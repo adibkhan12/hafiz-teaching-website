@@ -1,5 +1,6 @@
 "use client";
 import styled, { keyframes } from "styled-components";
+import Center from "../components/Center";
 
 const bgGradient = keyframes`
   0% { background-position: 0% 50%; }
@@ -22,14 +23,14 @@ const Section = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem 0.5rem 1.5rem 0.5rem;
+  padding: 2.5rem 0.5rem 1.5rem 0.5rem;
   background: linear-gradient(120deg, #181c2a 0%, #23263a 100%);
   background-size: 200% 200%;
   animation: ${bgGradient} 24s ease-in-out infinite;
 `;
 const Hero = styled.div`
-  max-width: 48rem;
   width: 100%;
+  max-width: 1400px;
   text-align: center;
   animation: ${fadeInUp} 0.8s cubic-bezier(.4,0,.2,1) both;
   background: rgba(24, 28, 42, 0.92);
@@ -91,6 +92,7 @@ const Button = styled.a`
 `;
 const VideoWrapper = styled.div`
   width: 100%;
+  max-width: 1400px;
   display: flex;
   justify-content: center;
   margin-bottom: 2rem;
@@ -110,7 +112,7 @@ const VideoFrame = styled.div`
 `;
 const SocialSection = styled.div`
   width: 100%;
-  max-width: 32rem;
+  max-width: 1400px;
   margin: 0 auto;
   animation: ${fadeInUp} 1.2s cubic-bezier(.4,0,.2,1) both;
   background: rgba(24, 28, 42, 0.92);
@@ -133,54 +135,72 @@ const SocialTitle = styled.h2`
   @media (min-width: 768px) { font-size: 2rem; }
 `;
 const SocialLinks = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 1rem;
-  @media (min-width: 480px) { flex-direction: row; gap: 1.5rem; }
+  justify-content: center;
+  align-items: stretch;
+  @media (min-width: 600px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 `;
 const SocialLink = styled.a<{color: string}>`
+  min-width: 120px;
+  max-width: 300px;
   font-size: 1.3rem;
   font-weight: 700;
   color: ${({ color }) => color || "#b3c0e6"};
   text-decoration: none;
-  transition: transform 0.2s, text-shadow 0.2s;
+  transition: transform 0.2s, text-shadow 0.2s, background 0.2s;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  &:hover { transform: scale(1.09) rotate(-2deg); text-shadow: 0 0 12px ${({ color }) => color || "#b3c0e6"}; }
-  @media (min-width: 480px) { font-size: 2rem; }
+  justify-content: center;
+  padding: 0.8em 0.5em;
+  border-radius: 0.7em;
+  background: rgba(255,255,255,0.03);
+  &:hover { transform: scale(1.09) rotate(-2deg); text-shadow: 0 0 12px ${({ color }) => color || "#b3c0e6"}; background: rgba(255,255,255,0.08); }
+  @media (max-width: 600px) {
+    font-size: 1.1rem;
+    min-width: 100%;
+    max-width: 100%;
+    margin-bottom: 0.5rem;
+  }
 `;
 
 export default function Home() {
   return (
     <Section>
-      <Hero>
-        <Title>
-          Welcome to <span>Hafiz Academy</span>
-        </Title>
-        <Subtitle>
-          Unlock the beauty of the Quran and Islamic knowledge with our expert-led courses, engaging blog, and vibrant community.
-        </Subtitle>
-        <ButtonRow>
-          <Button href="/courses">Explore Courses</Button>
-          <Button href="/blog" className="green">Read Blog</Button>
-        </ButtonRow>
-      </Hero>
-      <VideoWrapper>
-        <VideoFrame>
-          <iframe width="100%" height="215" src="https://www.youtube.com/embed/6R6g1UeF6jE" title="Sample Course Video" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-        </VideoFrame>
-      </VideoWrapper>
-      <SocialSection>
-        <SocialTitle>Connect with us</SocialTitle>
-        <SocialLinks>
-          <SocialLink href="https://facebook.com" target="_blank" rel="noopener noreferrer" color="#4267B2">Facebook</SocialLink>
-          <SocialLink href="https://youtube.com" target="_blank" rel="noopener noreferrer" color="#FF0000">YouTube</SocialLink>
-          <SocialLink href="https://twitter.com" target="_blank" rel="noopener noreferrer" color="#1DA1F2">Twitter</SocialLink>
-          <SocialLink href="https://instagram.com" target="_blank" rel="noopener noreferrer" color="#C13584">Instagram</SocialLink>
-        </SocialLinks>
-      </SocialSection>
+      <Center>
+        <Hero>
+          <Title>
+            Welcome to <span>Hafiz Academy</span>
+          </Title>
+          <Subtitle>
+            Unlock the beauty of the Quran and Islamic knowledge with our expert-led courses, engaging blog, and vibrant community.
+          </Subtitle>
+          <ButtonRow>
+            <Button href="/courses">Explore Courses</Button>
+            <Button href="/blog" className="green">Read Blog</Button>
+          </ButtonRow>
+        </Hero>
+        <VideoWrapper>
+          <VideoFrame>
+            <iframe width="100%" height="215" src="https://www.youtube.com/embed/6R6g1UeF6jE" title="Sample Course Video" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          </VideoFrame>
+        </VideoWrapper>
+        <SocialSection>
+          <SocialTitle>Connect with us</SocialTitle>
+          <SocialLinks>
+            <SocialLink href="https://facebook.com" target="_blank" rel="noopener noreferrer" color="#4267B2">Facebook</SocialLink>
+            <SocialLink href="https://youtube.com" target="_blank" rel="noopener noreferrer" color="#FF0000">YouTube</SocialLink>
+            <SocialLink href="https://twitter.com" target="_blank" rel="noopener noreferrer" color="#1DA1F2">Twitter</SocialLink>
+            <SocialLink href="https://instagram.com" target="_blank" rel="noopener noreferrer" color="#C13584">Instagram</SocialLink>
+          </SocialLinks>
+        </SocialSection>
+      </Center>
     </Section>
   );
 }
