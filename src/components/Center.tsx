@@ -1,12 +1,6 @@
 "use client";
-import styled from "styled-components";
-
-const StyledDiv = styled.div`
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 20px;
-`;
+import styles from "./Center.module.css";
 
 export default function Center({ children }: { children: React.ReactNode }) {
-  return <StyledDiv>{children}</StyledDiv>;
+  return <div className={styles.center}>{children}</div>;
 }
